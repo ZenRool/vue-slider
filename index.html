@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,35 +8,33 @@
     <title>Slider JS</title>
     <!-- Foglio di stile  -->
     <link rel="stylesheet" href="css/style.css">
+
     <!-- Collegamento a Vue  -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 </head>
 <body>
    <div id="root">
-        <div class="container">
-            <div class="items">
-                <!--
-                <div class="item active">
-                    <img src="./img/01.jpg" alt="">
+       <div class="container">
+           <div class="items">
+
+                <div class="item" v-for="element in elements" v-if = "element.active">         
+                    <img :src="element.image" :alt="element.title">
                     <div class="text">
-                        <h3>Lorem</h3>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam, cumque provident totam omnis, magnam dolores dolorum corporis.</p>
+                        <h3>{{element.title}}</h3>
+                        <p>{{element.text}}</p>
                     </div>
+        
                 </div>
-                -->
             </div>
+
             <div class="thumbs">
-                <!--
-                <div class="thumb active">
-                    <img src="./img/01.jpg" alt="">
-                </div>
-                -->
                 <div class="prev"></div>
                 <div class="next"></div>
             </div>
+
        </div>
    </div>
    <!-- Script  -->
-    <script src="js/app.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
