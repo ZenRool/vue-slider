@@ -41,8 +41,6 @@ for (let i = 0; i < images.length; i++) {
     });
 }
 
-
-
 const app = new Vue( {
     el: "#root",
     data: ( {
@@ -56,8 +54,6 @@ const app = new Vue( {
             this.time = setInterval(this.next,3000);
         },
         playStop: bool => bool ? clearInterval(app.time) : app.time = setInterval(app.next, 3000),
-        
-        
         next(){
             // Cerco in che posizione stava il true
             let truePos = 0;
@@ -70,15 +66,12 @@ const app = new Vue( {
                 
             });
             
-            // se sono all'ultima, mi posiziono sulla prima
+            // se sono all'ultima, mi posiziono sulla prima altrimenti sommo 1
             if (truePos == this.elements.length - 1) {
                 this.elements[0].active = true; // prima
             } else {
                 this.elements[truePos + 1].active = true; // successiva
             }
-            // this.time.reset(3000);
-            // this.time = setInterval(app.next,3000);
-            // clearInterval(this.time);
             this.timer();
 
         },
@@ -91,16 +84,14 @@ const app = new Vue( {
                     // riporto a false lo stato della posizione che aveva true 
                     element.active = false;
                 }
-                
             });
             
-            // se sono alla prima posizione , mi posiziono sul'ultima
+            // se sono alla prima posizione , mi posiziono sul'ultima altrimenti sottraggo 1
             if (truePos == 0) {
                 this.elements[this.elements.length - 1].active = true; // prima
             } else {
                 this.elements[truePos - 1].active = true; // precedente
             }
-            
             this.timer();
 
         },
@@ -113,17 +104,14 @@ const app = new Vue( {
                 }
                 
             });
-            // console.log(index);
+
             this.elements[index].active = true;
-            // clearInterval(this.time);
             this.timer();
-           
         },
 
     }
 });
 app.timer();
-// interval = setInterval(app.next,3000);
 
 
 
