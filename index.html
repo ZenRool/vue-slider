@@ -30,9 +30,9 @@
             <div class="thumbs">
                 <div class="prev"  @click="prev"></div>
                 <div class="next" @click="next"></div>
-                <div class="thumb" v-for="element in elements" :class = "{active: element.active }" >
+                <div class="thumb" v-for="(element, index) in elements" :class = "{active: element.active }" @click="clickThumb(index) " >
                     <img :src="element.image" :alt="element.title">
-
+                    
 
                 </div>
             </div>

@@ -43,8 +43,7 @@ for (let i = 0; i < images.length; i++) {
 const app = new Vue( {
     el: "#root",
     data: ( {
-        elements: dates,
-        prova: 1
+        elements: dates
         
     }) ,
     methods: {
@@ -89,6 +88,17 @@ const app = new Vue( {
             } else {
                 this.elements[truePos - 1].active = true; // successiva
             }
+        },
+        clickThumb(index) {
+            this.elements.forEach((element) => {
+                if(element.active) {
+                    element.active = false;
+                }
+                
+            });
+            // console.log(index);
+            this.elements[index].active = true;
+
         },
         //funzione di debug
         ciao() {
