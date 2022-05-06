@@ -48,6 +48,53 @@ const app = new Vue( {
         
     }) ,
     methods: {
+        next(){
+            
+            // console.log('Next', currentSlide);
+            // changeActive(currentSlide);
+            // provo con il for
+            let truePos = 0;
+            this.elements.forEach((element , index) => {
+                if(element.active) {
+                    truePos = index;
+                    element.active = false;
+                }
+                
+            });
+            
+            // se sono all'ultima, mi posiziono sulla prima
+            if (truePos == this.elements.length - 1) {
+                this.elements[0].active = true; // prima
+            } else {
+                this.elements[truePos + 1].active = true; // successiva
+            }
+        },
+        prev(){
+            
+            // console.log('Next', currentSlide);
+            // changeActive(currentSlide);
+            // provo con il for
+            let truePos = 0;
+            this.elements.forEach((element , index) => {
+                if(element.active) {
+                    truePos = index;
+                    element.active = false;
+                }
+                
+            });
+            
+            // se sono all'ultima, mi posiziono sulla prima
+            if (truePos == 0) {
+                this.elements[this.elements.length - 1].active = true; // prima
+            } else {
+                this.elements[truePos - 1].active = true; // successiva
+            }
+        },
+        //funzione di debug
+        ciao() {
+            alert("ciao");
+        }
+        
 
     }
 });
@@ -57,67 +104,7 @@ const itemsContainer  = document.querySelector('#root');
 const thumbsContainer = document.getElementsByClassName('thumbs')[0]; // document.querySelector('.thumbs')
 
 
-// app.createItems();
-createThumbnails();
+
 // const interval = setInterval(next,3000);
 
-// Slide precedente
-// document.querySelector('.prev').addEventListener('click', function() {
-
-//     // se sono alla prima, mi posiziono sull'ultima
-//     if (currentSlide == 0) {
-//         currentSlide = data.length - 1; // ultima
-//     } else {
-//         currentSlide--; // precedente
-//     }
-
-//     console.log('Prev', currentSlide);
-//     changeActive(currentSlide);
-// });
-
-// Slide successiva
-// document.querySelector('.next').addEventListener('click', next);
-// function next(){
-//     // se sono all'ultima, mi posiziono sulla prima
-//     if (currentSlide == dates.length - 1) {
-//         currentSlide = 0; // prima
-//     } else {
-//         currentSlide++; // successiva
-//     }
-
-//     console.log('Next', currentSlide);
-//     changeActive(currentSlide);
-// }
-
-// function changeActive(index) {
-
-//     // togliamo la classe active dall'item
-//     document.querySelector('.item.active').classList.remove('active');
-//     document.querySelector('.thumb.active').classList.remove('active');
-
-//     // aggiungiamo la classe active all'item corrente
-//     document.querySelectorAll('.item')[index].classList.add('active');
-//     document.querySelectorAll('.thumb')[index].classList.add('active');
-// }
-
-
-
-// creiamo le thumbnails
-function createThumbnails() {
-
-    for (let i = 0; i < dates.length; i++) {
-        let elem = dates[i];
-
-        // aggiungiamo la classe active alla prima thumbnail (currentSlide = 0)
-        let firstActive = '';
-        if (i == currentSlide) {
-            firstActive = 'active';
-        }
-
-        thumbsContainer.innerHTML +=
-            `<div class="thumb ${firstActive}">
-                <img src="${elem.image}" alt="${elem.title}">
-            </div>`;
-    }
-}
 

@@ -28,8 +28,13 @@
             </div>
 
             <div class="thumbs">
-                <div class="prev"></div>
-                <div class="next"></div>
+                <div class="prev"  @click="prev"></div>
+                <div class="next" @click="next"></div>
+                <div class="thumb" v-for="element in elements" :class = "{active: element.active }" >
+                    <img :src="element.image" :alt="element.title">
+
+
+                </div>
             </div>
 
        </div>
