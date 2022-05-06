@@ -15,9 +15,9 @@
 <body>
    <div id="root">
        <div class="container">
-           <div class="items">
+           <div class="items" >
 
-                <div class="item" v-for="element in elements" v-if = "element.active">         
+                <div class="item" v-for="element in elements" v-if = "element.active" @mouseover="playStop(true)" @mouseleave="playStop(false)">         
                     <img :src="element.image" :alt="element.title">
                     <div class="text">
                         <h3>{{element.title}}</h3>
@@ -36,7 +36,7 @@
 
                 </div>
             </div>
-            <button @click="ciao"> click</button>
+            
         </div>
 
        

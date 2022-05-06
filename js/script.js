@@ -52,17 +52,19 @@ const app = new Vue( {
     }) ,
     methods: {
         timer() {
+            clearInterval(this.time);
             this.time = setInterval(this.next,3000);
         },
+        playStop: bool => bool ? clearInterval(app.time) : app.time = setInterval(app.next, 3000),
+        
+        
         next(){
-            
-            // console.log('Next', currentSlide);
-            // changeActive(currentSlide);
-            // provo con il for
+            // Cerco in che posizione stava il true
             let truePos = 0;
             this.elements.forEach((element , index) => {
                 if(element.active) {
                     truePos = index;
+                    // riporto a false lo stato della posizione che aveva true 
                     element.active = false;
                 }
                 
@@ -76,53 +78,47 @@ const app = new Vue( {
             }
             // this.time.reset(3000);
             // this.time = setInterval(app.next,3000);
-            clearInterval(this.time);
+            // clearInterval(this.time);
             this.timer();
 
         },
         prev(){
-            
-            // console.log('Next', currentSlide);
-            // changeActive(currentSlide);
-            // provo con il for
+            // Cerco in che posizione stava il true
             let truePos = 0;
             this.elements.forEach((element , index) => {
                 if(element.active) {
                     truePos = index;
+                    // riporto a false lo stato della posizione che aveva true 
                     element.active = false;
                 }
                 
             });
             
-            // se sono all'ultima, mi posiziono sulla prima
+            // se sono alla prima posizione , mi posiziono sul'ultima
             if (truePos == 0) {
                 this.elements[this.elements.length - 1].active = true; // prima
             } else {
-                this.elements[truePos - 1].active = true; // successiva
+                this.elements[truePos - 1].active = true; // precedente
             }
-            clearInterval(this.time);
+            
             this.timer();
 
         },
         clickThumb(index) {
             this.elements.forEach((element) => {
                 if(element.active) {
+                    // riporto a false lo stato della posizione che aveva true
+                    //in questo caso non ho bisogno della posizione precedente 
                     element.active = false;
                 }
                 
             });
             // console.log(index);
             this.elements[index].active = true;
-            clearInterval(this.time);
+            // clearInterval(this.time);
             this.timer();
            
         },
-        //funzione di debug
-        ciao() {
-            alert("ciao");
-            clearInterval(this.time);
-        }
-        
 
     }
 });
