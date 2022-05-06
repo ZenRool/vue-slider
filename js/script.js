@@ -40,13 +40,20 @@ for (let i = 0; i < images.length; i++) {
         active: currentSlide[i]
     });
 }
+
+
+
 const app = new Vue( {
     el: "#root",
     data: ( {
-        elements: dates
+        elements: dates,
+        time: Object
         
     }) ,
     methods: {
+        timer() {
+            this.time = setInterval(this.next,3000);
+        },
         next(){
             
             // console.log('Next', currentSlide);
@@ -67,6 +74,11 @@ const app = new Vue( {
             } else {
                 this.elements[truePos + 1].active = true; // successiva
             }
+            // this.time.reset(3000);
+            // this.time = setInterval(app.next,3000);
+            clearInterval(this.time);
+            this.timer();
+
         },
         prev(){
             
@@ -88,6 +100,9 @@ const app = new Vue( {
             } else {
                 this.elements[truePos - 1].active = true; // successiva
             }
+            clearInterval(this.time);
+            this.timer();
+
         },
         clickThumb(index) {
             this.elements.forEach((element) => {
@@ -98,23 +113,23 @@ const app = new Vue( {
             });
             // console.log(index);
             this.elements[index].active = true;
-
+            clearInterval(this.time);
+            this.timer();
+           
         },
         //funzione di debug
         ciao() {
             alert("ciao");
+            clearInterval(this.time);
         }
         
 
     }
 });
-
-
-const itemsContainer  = document.querySelector('#root');
-const thumbsContainer = document.getElementsByClassName('thumbs')[0]; // document.querySelector('.thumbs')
+app.timer();
+// interval = setInterval(app.next,3000);
 
 
 
-// const interval = setInterval(next,3000);
 
 
